@@ -1,0 +1,159 @@
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
+"5.title" = "Traer todo al frente";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
+"19.title" = "Ventana";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
+"23.title" = "Minimizar";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
+"24.title" = "Ventana";
+
+/* Class = "NSMenuItem"; title = "JSONModeler"; ObjectID = "56"; */
+"56.title" = "JSONModeler";
+
+/* Class = "NSMenu"; title = "JSONModeler"; ObjectID = "57"; */
+"57.title" = "JSONModeler";
+
+/* Class = "NSMenuItem"; title = "About JSONModeler"; ObjectID = "58"; */
+"58.title" = "Acerca de JSONModeler";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
+"130.title" = "Servicios";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
+"131.title" = "Servicios";
+
+/* Class = "NSMenuItem"; title = "Hide JSONModeler"; ObjectID = "134"; */
+"134.title" = "Esconder JSONModeler";
+
+/* Class = "NSMenuItem"; title = "Quit JSONModeler"; ObjectID = "136"; */
+"136.title" = "Quitar JSONModeler";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
+"145.title" = "Esconder otros";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
+"150.title" = "Mostrar todos";
+
+/* Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "195"; */
+"195.title" = "Parar de hablar";
+
+/* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "196"; */
+"196.title" = "Empezar a hablar";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "197"; */
+"197.title" = "Copiar";
+
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "198"; */
+"198.title" = "Seleccionar todo";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "199"; */
+"199.title" = "Cortar";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "202"; */
+"202.title" = "Borrar";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "203"; */
+"203.title" = "Pegar";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "205"; */
+"205.title" = "Editar";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "207"; */
+"207.title" = "Deshacer";
+
+/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "208"; */
+"208.title" = "Encontrar el siguiente";
+
+/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "209"; */
+"209.title" = "Encontrar…";
+
+/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "210"; */
+"210.title" = "Saltar a la selección";
+
+/* Class = "NSMenuItem"; title = "Speech"; ObjectID = "211"; */
+"211.title" = "Discurso";
+
+/* Class = "NSMenu"; title = "Speech"; ObjectID = "212"; */
+"212.title" = "Discurso";
+
+/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "213"; */
+"213.title" = "Encontrar anterior";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "215"; */
+"215.title" = "Rehacer";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "217"; */
+"217.title" = "Editar";
+
+/* Class = "NSMenuItem"; title = "Find"; ObjectID = "218"; */
+"218.title" = "Encontrar";
+
+/* Class = "NSMenu"; title = "Find"; ObjectID = "220"; */
+"220.title" = "Encontrar";
+
+/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "221"; */
+"221.title" = "Usar selección para encontrar";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "239"; */
+"239.title" = "Acercar";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "490"; */
+"490.title" = "Ayuda";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "491"; */
+"491.title" = "Ayuda";
+
+/* Class = "NSMenuItem"; title = "JSONModeler Help"; ObjectID = "492"; */
+"492.title" = "Ayuda de JSONModeler";
+
+/* Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "534"; */
+"534.title" = "Buscar y reemplazar...";
+
+/* Class = "NSMenuItem"; title = "Check For Updates..."; ObjectID = "599"; */
+"599.title" = "Buscar actualizaciones...";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "605"; */
+"605.title" = "Archivo";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "606"; */
+"606.title" = "Archivo";
+
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "607"; */
+"607.title" = "Nuevo";
+
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "608"; */
+"608.title" = "Abrir...";
+
+/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "609"; */
+"609.title" = "Abrir reciente";
+
+/* Class = "NSMenuItem"; title = "Save"; ObjectID = "612"; */
+"612.title" = "Guardar";
+
+/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "613"; */
+"613.title" = "Guardar como...";
+
+/* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "614"; */
+"614.title" = "Volver a guardado";
+
+/* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "616"; */
+"616.title" = "Propiedades de página...";
+
+/* Class = "NSMenuItem"; title = "Print…"; ObjectID = "617"; */
+"617.title" = "Imprimir...";
+
+/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "618"; */
+"618.title" = "Abrir reciente";
+
+/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "619"; */
+"619.title" = "Borrar menú";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "645"; */
+"645.title" = "Cerrar";
+
+/* Class = "NSMenuItem"; title = "Send Feedback"; ObjectID = "647"; */
+"647.title" = "Enviar comentarios";

@@ -1,0 +1,159 @@
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
+"5.title" = "すべてを手前に表示";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
+"19.title" = "ウィンドウ";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
+"23.title" = "最小化";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
+"24.title" = "ウィンドウ";
+
+/* Class = "NSMenuItem"; title = "JSONModeler"; ObjectID = "56"; */
+"56.title" = "JSON モデラー";
+
+/* Class = "NSMenu"; title = "JSONModeler"; ObjectID = "57"; */
+"57.title" = "JSON モデラー";
+
+/* Class = "NSMenuItem"; title = "About JSONModeler"; ObjectID = "58"; */
+"58.title" = "JSON モデラーについて";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
+"130.title" = "サービス";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
+"131.title" = "サービス";
+
+/* Class = "NSMenuItem"; title = "Hide JSONModeler"; ObjectID = "134"; */
+"134.title" = "JSON モデラーを非表示";
+
+/* Class = "NSMenuItem"; title = "Quit JSONModeler"; ObjectID = "136"; */
+"136.title" = "JSON モデラーを終了する";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
+"145.title" = "他を非表示";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
+"150.title" = "すべてを表示";
+
+/* Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "195"; */
+"195.title" = "会話終了";
+
+/* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "196"; */
+"196.title" = "会話開始";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "197"; */
+"197.title" = "コピー";
+
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "198"; */
+"198.title" = "すべてを選択";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "199"; */
+"199.title" = "切り取り";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "202"; */
+"202.title" = "削除";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "203"; */
+"203.title" = "貼り付け";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "205"; */
+"205.title" = "エディット";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "207"; */
+"207.title" = "アンドゥ";
+
+/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "208"; */
+"208.title" = "次を検索";
+
+/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "209"; */
+"209.title" = "検索";
+
+/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "210"; */
+"210.title" = "選択へジャンプ";
+
+/* Class = "NSMenuItem"; title = "Speech"; ObjectID = "211"; */
+"211.title" = "会話";
+
+/* Class = "NSMenu"; title = "Speech"; ObjectID = "212"; */
+"212.title" = "会話";
+
+/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "213"; */
+"213.title" = "前を検索";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "215"; */
+"215.title" = "リドゥ";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "217"; */
+"217.title" = "エディット";
+
+/* Class = "NSMenuItem"; title = "Find"; ObjectID = "218"; */
+"218.title" = "検索";
+
+/* Class = "NSMenu"; title = "Find"; ObjectID = "220"; */
+"220.title" = "検索";
+
+/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "221"; */
+"221.title" = "検索のために選択を使う";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "239"; */
+"239.title" = "ズーム";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "490"; */
+"490.title" = "ヘルプ";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "491"; */
+"491.title" = "ヘルプ";
+
+/* Class = "NSMenuItem"; title = "JSONModeler Help"; ObjectID = "492"; */
+"492.title" = "JSON モデラーのヘルプ";
+
+/* Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "534"; */
+"534.title" = "検索と置換";
+
+/* Class = "NSMenuItem"; title = "Check For Updates..."; ObjectID = "599"; */
+"599.title" = "アップデートをチェック";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "605"; */
+"605.title" = "ファイル";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "606"; */
+"606.title" = "ファイル";
+
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "607"; */
+"607.title" = "新規";
+
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "608"; */
+"608.title" = "開く";
+
+/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "609"; */
+"609.title" = "直前の状態を開く";
+
+/* Class = "NSMenuItem"; title = "Save"; ObjectID = "612"; */
+"612.title" = "保存";
+
+/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "613"; */
+"613.title" = "名前をつけて保存";
+
+/* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "614"; */
+"614.title" = "保存済に戻る";
+
+/* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "616"; */
+"616.title" = "ページのセットアップ";
+
+/* Class = "NSMenuItem"; title = "Print…"; ObjectID = "617"; */
+"617.title" = "印刷";
+
+/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "618"; */
+"618.title" = "直前の状態を開く";
+
+/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "619"; */
+"619.title" = "メニューをクリア";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "645"; */
+"645.title" = "閉じる";
+
+/* Class = "NSMenuItem"; title = "Send Feedback"; ObjectID = "647"; */
+"647.title" = "フィードバック送信";

@@ -1,0 +1,5 @@
+platform :osx, '10.10'
+
+xcodeproj 'JSONAccelerator.xcodeproj'
+
+pod 'AFNetworking',         '~> 1.1'

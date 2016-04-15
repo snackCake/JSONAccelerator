@@ -1,0 +1,14 @@
+    NSObject *received{REFERENCE_CLASS} = [dict objectForKey:{JSONNAME}];
+    NSMutableArray *parsed{REFERENCE_CLASS} = [NSMutableArray array];
+    
+    if ([received{REFERENCE_CLASS} isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *item in (NSArray *)received{REFERENCE_CLASS}) {
+            if ([item isKindOfClass:[NSDictionary class]]) {
+                [parsed{REFERENCE_CLASS} addObject:[{REFERENCE_CLASS} modelObjectWithDictionary:item]];
+            }
+       }
+    } else if ([received{REFERENCE_CLASS} isKindOfClass:[NSDictionary class]]) {
+       [parsed{REFERENCE_CLASS} addObject:[{REFERENCE_CLASS} modelObjectWithDictionary:(NSDictionary *)received{REFERENCE_CLASS}]];
+    }
+
+    self.{SETTERNAME} = [NSArray arrayWithArray:parsed{REFERENCE_CLASS}];

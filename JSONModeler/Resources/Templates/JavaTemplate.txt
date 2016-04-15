@@ -1,0 +1,21 @@
+package {PACKAGENAME};
+
+import org.json.*;
+{IMPORTBLOCK}
+
+public class {CLASSNAME} {
+	
+    {PROPERTIES}
+    
+	public {CLASSNAME} () {
+		
+	}	
+        
+    public {CLASSNAME} (JSONObject json) {
+    
+{SETTERS}
+    }
+    
+{GETTER_SETTER_METHODS}
+    
+}
