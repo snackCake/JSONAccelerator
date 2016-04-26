@@ -137,7 +137,7 @@ int main(int argc, const char *argv[]) {
             optionsDict = @{kObjectiveCWritingOptionUseARC: @(YES)};
         } else if (language == OutputLanguageJava) {
             writer = [[OutputLanguageWriterJava alloc] init];
-            optionsDict = @{kJavaWritingOptionBaseClassName: @"BaseClass", kJavaWritingOptionPackageName: @"com.companyname"};
+            optionsDict = @{kJvmWritingOptionBaseClassName: @"BaseClass", kJvmWritingOptionPackageName: @"com.companyname"};
         } else {
             // NOT YET SUPPORTED
         }

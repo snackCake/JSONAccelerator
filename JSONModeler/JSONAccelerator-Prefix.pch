@@ -18,7 +18,8 @@ typedef NS_ENUM(unsigned int, OutputLanguage) {
     OutputLanguageJava,
     OutputLanguageCoreDataObjectiveC,
     OutputLanguageDjangoPython,
-    OutputLanguagePython
+    OutputLanguagePython,
+    OutputLanguageScala,
 };
 
 typedef NS_ENUM(unsigned int, HTTPMethod) {

@@ -54,7 +54,7 @@
     self.languageDropDown.nextKeyView = self.baseClassField;
     [self.baseClassField becomeFirstResponder];
     
-    if (_languageDropDownIndex == OutputLanguageJava) {
+    if (_languageDropDownIndex == OutputLanguageJava || _languageDropDownIndex == OutputLanguageScala) {
         self.javaPanel.hidden = NO;
         self.objectiveCPanel.hidden = YES;
 
@@ -85,6 +85,8 @@
         return OutputLanguageDjangoPython;
     } else if (_languageDropDownIndex == 4) {
         return OutputLanguagePython;
+    } else if (_languageDropDownIndex == 5) {
+        return OutputLanguageScala;
     } else {
         return -1;
     }

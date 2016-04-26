@@ -18,109 +18,42 @@
 #import "ClassPropertiesObject.h"
 #import "NSString+Nerdery.h"
 
-@interface OutputLanguageWriterJava ()
-
-- (NSString *) Java_ImplementationFileForClassObject:(ClassBaseObject *)classObject;
-
-@end
-
 @implementation OutputLanguageWriterJava
+
 //@synthesize classObject = _classObject;
 
 #pragma mark - File Writing Methods
 
-- (BOOL)writeClassObjects:(NSDictionary *)classObjectsDict toURL:(NSURL *)url options:(NSDictionary *)options generatedError:(BOOL *)generatedErrorFlag {
-    BOOL filesHaveHadError = NO;
-    BOOL filesHaveBeenWritten = NO;
-    
-    NSArray *files = classObjectsDict.allValues;
-    
-    /* Determine package name */
-    NSString *packageName;
-    
-    if (nil != options[kJavaWritingOptionPackageName]) {
-        packageName = options[kJavaWritingOptionPackageName];
-    } else {
-        /* Default value */
-        packageName = @"com.MYCOMPANY.MYPROJECT.model";
-    }
-    
-    for (ClassBaseObject *base in files) {
-        // This section is to guard against people going through and renaming the class
-        // to something that has already been named.
-        // This will check the class name and keep appending an additional number until something has been found
-        if ([base.className isEqualToString:@"InternalBaseClass"]) {
-            NSString *newBaseClassName;
-            
-            if (nil != options[kJavaWritingOptionBaseClassName]) {
-                newBaseClassName = options[kJavaWritingOptionBaseClassName];
-            } else {
-                newBaseClassName = @"BaseClass";
-            }
-            BOOL hasUniqueFileNameBeenFound = NO;
-            NSUInteger classCheckInteger = 2;
-            
-            while (hasUniqueFileNameBeenFound == NO) {
-                hasUniqueFileNameBeenFound = YES;
-                
-                for (ClassBaseObject *collisionBaseObject in files) {
-                    if ([collisionBaseObject.className isEqualToString:newBaseClassName]) {
-                        hasUniqueFileNameBeenFound = NO; 
-                    }
-                }
-                
-                if (hasUniqueFileNameBeenFound == NO) {
-                    newBaseClassName = [NSString stringWithFormat:@"%@%li", newBaseClassName, classCheckInteger];
-                    classCheckInteger++;
-                }
-            }
-            
-            base.className = newBaseClassName;
-        }
-        
-        /* Write the .java file to disk */
-        NSError *error;
-        NSString *outputString = [self Java_ImplementationFileForClassObject:base];
-        NSString *filename = [NSString stringWithFormat:@"%@.java", base.className];
-        
-        /* Define the package name in each file */
-        outputString = [outputString stringByReplacingOccurrencesOfString:@"{PACKAGENAME}" withString:packageName];
+/**
+ * @return filename format string for Java
+ */
+- (NSString *)filenameFormat {
+    return @"%@.java";
+}
+
+- (void)writeSource:(NSString *)source toURL:(NSURL *)url filename:(NSString *)filename error:(NSError **)error {
+
 #ifndef COMMAND_LINE
-        [outputString writeToURL:[url URLByAppendingPathComponent:filename]
-                     atomically:YES
-                       encoding:NSUTF8StringEncoding 
-                          error:&error];
+    [super writeSource:source toURL:url filename:filename error:error];
 #else
-        [outputString writeToFile:[[url URLByAppendingPathComponent:filename] absoluteString]
-                      atomically:YES
-                        encoding:NSUTF8StringEncoding
-                           error:&error];
+    [source writeToFile:[[url URLByAppendingPathComponent:filename] absoluteString]
+                   atomically:YES
+                     encoding:NSUTF8StringEncoding
+                        error:error];
 #endif
-        if (error) {
-            DLog(@"%@", [error localizedDescription]);
-            filesHaveHadError = YES;
-        } else {
-            filesHaveBeenWritten = YES;
-        }
-    }
-    
-    /* Return the error flag (by reference) */
-    *generatedErrorFlag = filesHaveHadError;
-    
-    
-    return filesHaveBeenWritten;
 }
 
 - (NSDictionary *)getOutputFilesForClassObject:(ClassBaseObject *)classObject {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    dict[[NSString stringWithFormat:@"%@.java", classObject.className]] = [self Java_ImplementationFileForClassObject:classObject];
+    NSString *sourceString = [self sourceImplementationFileForClassObject:classObject package:kDefaultJvmPackageName];
+    dict[[NSString stringWithFormat:self.filenameFormat, classObject.className]] = sourceString;
     
     return [NSDictionary dictionaryWithDictionary:dict];
     
 }
 
-- (NSString *)Java_ImplementationFileForClassObject:(ClassBaseObject *)classObject {
+- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject package:(NSString *)packageName {
 #ifndef COMMAND_LINE
     NSBundle *mainBundle = [NSBundle mainBundle];
     
@@ -129,6 +62,9 @@
 #else
     NSString *templateString = @"package {PACKAGENAME};\n\nimport org.json.*;\n{IMPORTBLOCK}\n\npublic class {CLASSNAME} {\n	\n    {PROPERTIES}\n    \n	public {CLASSNAME} () {\n		\n	}	\n        \n    public {CLASSNAME} (JSONObject json) {\n    \n{SETTERS}\n    }\n    \n{GETTER_SETTER_METHODS}\n    \n}\n";
 #endif
+    // Define the package name in each file.
+    templateString = [templateString stringByReplacingOccurrencesOfString:@"{PACKAGENAME}" withString:packageName];
+
     templateString = [templateString stringByReplacingOccurrencesOfString:@"{CLASSNAME}" withString:classObject.className];
     
     // Flag if class has an ArrayList type property (used for generating the import block)
@@ -199,37 +135,6 @@
 
 - (NSSet *)reservedWords {
     return [NSSet setWithObjects:@"abstract", @"assert", @"boolean", @"break", @"byte", @"case", @"catch", @"char", @"class", @"const", @"continue", @"default", @"do", @"double", @"else", @"enum", @"extends", @"false", @"final", @"finally", @"float", @"for", @"goto", @"if", @"implements", @"import", @"instanceof", @"int", @"interface", @"long", @"native", @"new", @"null", @"package", @"private", @"protected", @"public", @"return", @"short", @"static", @"strictfp", @"super", @"switch", @"synchronized", @"this", @"throw", @"throws", @"transient", @"true", @"try", @"void", @"volatile", @"while", nil];
-}
-
-- (NSString *)classNameForObject:(ClassBaseObject *)classObject fromReservedWord:(NSString *)reservedWord {
-    NSString *className = [[reservedWord stringByAppendingString:@"Class"] capitalizeFirstCharacter];
-    NSRange startsWithNumeral = [[className substringToIndex:1] rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"0123456789"]];
-    
-    if ( !(startsWithNumeral.location == NSNotFound && startsWithNumeral.length == 0) ) {
-        className = [@"Num" stringByAppendingString:className];
-    }
-    
-    NSMutableArray *components = [[className componentsSeparatedByString:@"_"] mutableCopy];
-    
-    NSInteger numComponents = components.count;
-    
-    for (int i = 0; i < numComponents; ++i) {
-        components[i] = [(NSString *)components[i] capitalizeFirstCharacter];
-    }
-    
-    return [components componentsJoinedByString:@""];
-}
-
-- (NSString *)propertyNameForObject:(ClassPropertiesObject *)propertyObject inClass:(ClassBaseObject *)classObject fromReservedWord:(NSString *)reservedWord {
-    /* General case */
-    NSString *propertyName = [[reservedWord stringByAppendingString:@"Property"] uncapitalizeFirstCharacter];
-    NSRange startsWithNumeral = [[propertyName substringToIndex:1] rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"0123456789"]];
-    
-    if ( !(startsWithNumeral.location == NSNotFound && startsWithNumeral.length == 0) ) {
-        propertyName = [@"num" stringByAppendingString:propertyName];
-    }
-    
-    return [propertyName uncapitalizeFirstCharacter];
 }
 
 #pragma mark - Property Writing Methods

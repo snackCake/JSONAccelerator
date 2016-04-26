@@ -12,15 +12,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 #import <Foundation/Foundation.h>
-#import "DefaultJvmOutputLanguageWriter.h"
-#import "ClassPropertiesObject.h"
 #import "OutputLanguageWriterProtocol.h"
 
-
-@interface OutputLanguageWriterJava : DefaultJvmOutputLanguageWriter
-
-- (NSString *)setterMethodForProperty:(ClassPropertiesObject *) property;
+@interface DefaultOutputLanguageWriter : NSObject <OutputLanguageWriterProtocol>
 
 @end

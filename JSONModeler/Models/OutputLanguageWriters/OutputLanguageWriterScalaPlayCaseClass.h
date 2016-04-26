@@ -15,12 +15,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DefaultJvmOutputLanguageWriter.h"
-#import "ClassPropertiesObject.h"
-#import "OutputLanguageWriterProtocol.h"
 
-
-@interface OutputLanguageWriterJava : DefaultJvmOutputLanguageWriter
-
-- (NSString *)setterMethodForProperty:(ClassPropertiesObject *) property;
+@interface OutputLanguageWriterScalaPlayCaseClass : DefaultJvmOutputLanguageWriter
 
 @end

@@ -31,6 +31,7 @@
 #import "OutputLanguageWriterCoreData.h"
 #import "OutputLanguageWriterDjango.h"
 #import "OutputLanguageWriterPython.h"
+#import "OutputLanguageWriterScalaPlayCaseClass.h"
 
 #import "CoreDataModelGenerator.h"
 
@@ -404,7 +405,14 @@
                     }
                 } else if (language == OutputLanguageJava) {
                     writer = [[OutputLanguageWriterJava alloc] init];
-                    optionsDict = @{kJavaWritingOptionBaseClassName: baseClassName, kJavaWritingOptionPackageName: self.languageChooserViewController.packageName};
+                    optionsDict = baseClassName != nil ? @{kJvmWritingOptionBaseClassName: baseClassName,
+                                                           kJvmWritingOptionPackageName: self.languageChooserViewController.packageName} :
+                                                         @{kJvmWritingOptionPackageName: self.languageChooserViewController.packageName};
+                } else if (language == OutputLanguageScala) {
+                    writer = [[OutputLanguageWriterScalaPlayCaseClass alloc] init];
+                    optionsDict = baseClassName != nil ? @{kJvmWritingOptionBaseClassName: baseClassName,
+                                                           kJvmWritingOptionPackageName: self.languageChooserViewController.packageName} :
+                                                         @{kJvmWritingOptionPackageName: self.languageChooserViewController.packageName};
                 } else if (language == OutputLanguageCoreDataObjectiveC) {
                     writer = [[OutputLanguageWriterCoreData alloc] init];
                     
@@ -473,7 +481,8 @@
     
     OutputLanguage language = [self.languageChooserViewController chosenLanguage];
     // If we're creating java files, and there's no package name, reject
-    if (language == OutputLanguageJava && (self.languageChooserViewController.packageName == nil || [self.languageChooserViewController.packageName isEqual: @""]) ) {
+    if ((language == OutputLanguageJava || language == OutputLanguageScala) &&
+        (self.languageChooserViewController.packageName == nil || [self.languageChooserViewController.packageName isEqual: @""]) ) {
         NSAlert *alert = [NSAlert alertWithMessageText:@"No Package Name" defaultButton:@"Close" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Please enter a package name."];
         [alert runModal];
         
@@ -488,7 +497,6 @@
     NSArray *outputObjects = (self.modeler).parsedDictionary.allValues;
     
     
-    
     if (language == OutputLanguageObjectiveC) {
         for (ClassBaseObject *outputObject in outputObjects) {
             if ( [fileManager fileExistsAtPath:[[filePath stringByAppendingPathComponent:outputObject.className] stringByAppendingPathExtension:@"m"]]
@@ -499,6 +507,13 @@
     } else if (language == OutputLanguageJava) {
         for (ClassBaseObject *outputObject in outputObjects) {
             if ( [fileManager fileExistsAtPath:[[filePath stringByAppendingPathComponent:outputObject.className] stringByAppendingPathExtension:@"java"]] ) {
+                willOverwriteFiles = YES;
+            }
+        }
+    } else if (language == OutputLanguageScala) { 
+        // TODO: Refactor this code to be a bit more dry (share code with Java).
+        for (ClassBaseObject *outputObject in outputObjects) {
+            if ( [fileManager fileExistsAtPath:[[filePath stringByAppendingPathComponent:outputObject.className] stringByAppendingPathExtension:@"scala"]] ) {
                 willOverwriteFiles = YES;
             }
         }
