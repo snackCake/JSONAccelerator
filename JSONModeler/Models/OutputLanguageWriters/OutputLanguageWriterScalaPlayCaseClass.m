@@ -80,6 +80,7 @@
         case PropertyTypeBool:
             scalaType = @"Boolean";
             break;
+        // TODO: It seems like Double is being triggered when Int should be.
         case PropertyTypeDouble:
             scalaType = @"Double";
             break;
