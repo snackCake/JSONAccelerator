@@ -12,16 +12,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#import "OutputLanguageWriterScalaPlayCaseClass.h"
+#import "OutputLanguageWriterScalaCaseClass.h"
 #import "ClassBaseObject.h"
 
-@interface OutputLanguageWriterScalaPlayCaseClass ()
+@interface OutputLanguageWriterScalaCaseClass ()
 
 - (NSString *)scalaTypeForProperty:(ClassPropertiesObject *)property;
 
 @end
 
-@implementation OutputLanguageWriterScalaPlayCaseClass
+@implementation OutputLanguageWriterScalaCaseClass
 
 #pragma mark OutputLanguageWriterProtocol
 
@@ -106,7 +106,7 @@
     NSBundle *mainBundle = [NSBundle mainBundle];
     
     NSError *error = nil;
-    NSString *interfaceTemplate = [mainBundle pathForResource:@"ScalaPlayCaseClassTemplate" ofType:@"txt"];
+    NSString *interfaceTemplate = [mainBundle pathForResource:@"ScalaCaseClassTemplate" ofType:@"txt"];
     NSMutableString *templateString = [[NSMutableString alloc] initWithContentsOfFile:interfaceTemplate
                                                                              encoding:NSUTF8StringEncoding
                                                                                 error:&error];
@@ -126,7 +126,6 @@
                                          range:NSMakeRange(0, templateString.length)];
     
     // TODO: Add options to make this know what to import, based on use of Play or some other JSON library.
-    // TODO: Change the class and template names to reflect that Play isn't required.
     NSString *importBlock = @"";
     [templateString replaceOccurrencesOfString:@"{IMPORTBLOCK}"
                                     withString:importBlock

@@ -31,7 +31,7 @@
 #import "OutputLanguageWriterCoreData.h"
 #import "OutputLanguageWriterDjango.h"
 #import "OutputLanguageWriterPython.h"
-#import "OutputLanguageWriterScalaPlayCaseClass.h"
+#import "OutputLanguageWriterScalaCaseClass.h"
 
 #import "CoreDataModelGenerator.h"
 
@@ -409,7 +409,7 @@
                                                            kJvmWritingOptionPackageName: self.languageChooserViewController.packageName} :
                                                          @{kJvmWritingOptionPackageName: self.languageChooserViewController.packageName};
                 } else if (language == OutputLanguageScala) {
-                    writer = [[OutputLanguageWriterScalaPlayCaseClass alloc] init];
+                    writer = [[OutputLanguageWriterScalaCaseClass alloc] init];
                     optionsDict = baseClassName != nil ? @{kJvmWritingOptionBaseClassName: baseClassName,
                                                            kJvmWritingOptionPackageName: self.languageChooserViewController.packageName} :
                                                          @{kJvmWritingOptionPackageName: self.languageChooserViewController.packageName};
