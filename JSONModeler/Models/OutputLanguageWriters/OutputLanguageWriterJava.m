@@ -18,6 +18,12 @@
 #import "ClassPropertiesObject.h"
 #import "NSString+Nerdery.h"
 
+@interface OutputLanguageWriterJava ()
+
+- (NSString *)setterMethodForProperty:(ClassPropertiesObject *) property;
+
+@end
+
 @implementation OutputLanguageWriterJava
 
 //@synthesize classObject = _classObject;
@@ -46,14 +52,14 @@
 - (NSDictionary *)getOutputFilesForClassObject:(ClassBaseObject *)classObject {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    NSString *sourceString = [self sourceImplementationFileForClassObject:classObject package:kDefaultJvmPackageName options: nil];
+    NSString *sourceString = [self buildSourceImplementationFileForClassObject:classObject package:kDefaultJvmPackageName options: nil];
     dict[[NSString stringWithFormat:self.filenameFormat, classObject.className]] = sourceString;
     
     return [NSDictionary dictionaryWithDictionary:dict];
     
 }
 
-- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject
+- (NSString *)buildSourceImplementationFileForClassObject:(ClassBaseObject *)classObject
                                              package:(NSString *)packageName
                                              options:(NSDictionary *)options {
 #ifndef COMMAND_LINE

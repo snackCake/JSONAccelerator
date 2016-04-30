@@ -20,7 +20,12 @@
 
 @implementation DefaultOutputLanguageWriter
 
-- (BOOL)writeClassObjects:(NSDictionary *)classObjectsDict toURL:(NSURL *)url options:(NSDictionary *)options generatedError:(BOOL *)generatedErrorFlag {
+#pragma mark OutputLanguageWriterProtocol / Abstract
+
+- (BOOL)writeClassObjects:(NSDictionary *)classObjectsDict
+                    toURL:(NSURL *)url
+                  options:(NSDictionary *)options
+           generatedError:(BOOL *)generatedErrorFlag {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
@@ -31,6 +36,8 @@
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
+
+#pragma mark OutputLanguageWriterProtocol / Implemented
 
 - (NSString *)classNameForObject:(ClassBaseObject *)classObject fromReservedWord:(NSString *)reservedWord {
     NSString *className = [[reservedWord stringByAppendingString:@"Class"] capitalizeFirstCharacter];

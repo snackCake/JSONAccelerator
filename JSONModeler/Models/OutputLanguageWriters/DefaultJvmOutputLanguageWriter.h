@@ -19,17 +19,36 @@ static NSString *const kJvmWritingOptionBaseClassName = @"kJvmWritingOptionBaseC
 static NSString *const kJvmWritingOptionPackageName = @"kJvmWritingOptionPackageName";
 static NSString *const kDefaultJvmPackageName = @"com.MYCOMPANY.MYPROJECT.model";
 
+/**
+ * DefaultJvmOutputLanguageWriter is an abstract JVM subclass of DefaultOutputLanguageWriter that handles common functionality
+ * of JVM output writers (e.g. Java and Scala).
+ */
 @interface DefaultJvmOutputLanguageWriter : DefaultOutputLanguageWriter
 
-#pragma mark Protected
+#pragma mark Protected / Abstract
 
+/**
+ * A format string that can be used to build a filename for a classname. It should take one NSObject paramater (%@). This method must
+ * be implemented by subclasses.
+ */
 @property (NS_NONATOMIC_IOSONLY, readonly) NSString *filenameFormat;
 
-- (NSString *)findPackageForOptions:(NSDictionary *)options;
-- (void)ensureUniqueClassNameForClass:(ClassBaseObject*)base files:(NSArray *)files options:(NSDictionary *)options;
-- (void)writeSource:(NSString *)source toURL:(NSURL *)url filename:(NSString *)filename error:(NSError **)error;
-- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject
-                                             package:(NSString *)packageName
-                                             options:(NSDictionary *)options;
+/**
+ * Build source code for a class, in the given package, with the given options. This method must be implemented by subclasses.
+ */
+- (NSString *)buildSourceImplementationFileForClassObject:(ClassBaseObject *)classObject
+                                                  package:(NSString *)packageName
+                                                  options:(NSDictionary *)options;
+
+#pragma mark Protected / Implemented
+
+/**
+ * Write the given source code to the path at the given URL, with the given filename. This method has a default implementation, but may be
+ * overridden to support more complex functionality.
+ */
+- (void)writeSource:(NSString *)source
+              toURL:(NSURL *)url
+           filename:(NSString *)filename
+              error:(NSError **)error;
 
 @end

@@ -16,9 +16,18 @@
 #import "DefaultJvmOutputLanguageWriter.h"
 #import "ClassBaseObject.h"
 
+@interface DefaultJvmOutputLanguageWriter ()
+
+- (NSString *)findPackageForOptions:(NSDictionary *)options;
+- (void)ensureUniqueClassNameForClass:(ClassBaseObject*)base files:(NSArray *)files options:(NSDictionary *)options;
+
+@end
+
 @implementation DefaultJvmOutputLanguageWriter
 
-- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject
+#pragma mark Protected / Abstract
+
+- (NSString *)buildSourceImplementationFileForClassObject:(ClassBaseObject *)classObject
                                              package:(NSString *)packageName
                                              options:(NSDictionary *) options {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -31,6 +40,8 @@
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
+
+#pragma mark OutputLanguageWriter implementation
 
 /**
  * Generates JVM files and writes to disk.
@@ -48,7 +59,7 @@
         
         /* Write the source file to disk */
         NSError *error;
-        NSString *outputString = [self sourceImplementationFileForClassObject:base package:packageName options:options];
+        NSString *outputString = [self buildSourceImplementationFileForClassObject:base package:packageName options:options];
 
         NSString *filename = [NSString stringWithFormat:self.filenameFormat, base.className];
         [self writeSource:outputString toURL:url filename:filename error:&error];
@@ -67,12 +78,16 @@
     return filesHaveBeenWritten;
 }
 
+#pragma mark Protected / Implemented
+
 - (void)writeSource:(NSString *)source toURL:(NSURL *)url filename:(NSString *)filename error:(NSError **)error {
     [source writeToURL:[url URLByAppendingPathComponent:filename]
             atomically:YES
               encoding:NSUTF8StringEncoding
                  error:error];
 }
+
+#pragma mark Private
 
 - (NSString *)findPackageForOptions:(NSDictionary *)options {
     return (nil == options[kJvmWritingOptionPackageName]) ? kDefaultJvmPackageName : options[kJvmWritingOptionPackageName];

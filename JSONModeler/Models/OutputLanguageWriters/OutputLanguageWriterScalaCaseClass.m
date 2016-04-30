@@ -18,7 +18,6 @@
 @interface OutputLanguageWriterScalaCaseClass ()
 
 - (NSString *)scalaTypeForProperty:(ClassPropertiesObject *)property;
-
 - (void)updateImportsForTemplate:(NSMutableString *)templateString jsonLibrary:(JsonLibrary)jsonLibrary;
 - (void)updateCompanionObjectForTemplate:(NSMutableString *)templateString
                              jsonLibrary:(JsonLibrary)jsonLibrary
@@ -108,7 +107,7 @@
 /**
  * @return Scala case class source code.
  */
-- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject
+- (NSString *)buildSourceImplementationFileForClassObject:(ClassBaseObject *)classObject
                                              package:(NSString *)packageName
                                              options:(NSDictionary *)options {
     NSBundle *mainBundle = [NSBundle mainBundle];
@@ -140,6 +139,15 @@
     
     return [NSString stringWithString:templateString];
 }
+
+/**
+ * @return filename format string for Scala
+ */
+- (NSString *)filenameFormat {
+    return @"%@.scala";
+}
+
+#pragma mark Internal methods
 
 - (void)updateImportsForTemplate:(NSMutableString *)templateString jsonLibrary:(JsonLibrary)jsonLibrary {
     NSString *importBlock = nil;
@@ -235,13 +243,6 @@
                                            options:0
                                              range:NSMakeRange(0, templateString.length)];
     }
-}
-
-/**
- * @return filename format string for Scala
- */
-- (NSString *)filenameFormat {
-    return @"%@.scala";
 }
 
 @end

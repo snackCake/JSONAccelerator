@@ -16,6 +16,10 @@
 #import <Foundation/Foundation.h>
 #import "DefaultJvmOutputLanguageWriter.h"
 
+/**
+ * OutputLanguageWriterProtocol implementation that generates Scala case classes, supporting a number of JSON libraries, including
+ * Play and Akka-HTTP / Spray.
+ */
 @interface OutputLanguageWriterScalaCaseClass : DefaultJvmOutputLanguageWriter
 
 @end

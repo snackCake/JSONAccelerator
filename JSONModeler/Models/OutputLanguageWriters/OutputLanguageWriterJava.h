@@ -21,6 +21,4 @@
 
 @interface OutputLanguageWriterJava : DefaultJvmOutputLanguageWriter
 
-- (NSString *)setterMethodForProperty:(ClassPropertiesObject *) property;
-
 @end

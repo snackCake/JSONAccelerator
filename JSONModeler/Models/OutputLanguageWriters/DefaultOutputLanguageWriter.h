@@ -17,6 +17,10 @@
 
 static NSString *const kWritingOptionJsonLibrary = @"kWritingOptionJsonLibrary";
 
+/**
+ * DefaultOutputLanguageWriter is a basic implementation of shared functionality for OutputLanguageWriterProtocol. It is abstract and
+ * does not implement writeClassObjects or reservedWords, so subclasses must.
+ */
 @interface DefaultOutputLanguageWriter : NSObject <OutputLanguageWriterProtocol>
 
 @end
