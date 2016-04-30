@@ -89,7 +89,6 @@ static NSString *const kScalaDouble = @"Double";
         case PropertyTypeBool:
             scalaType = kScalaBool;
             break;
-            // TODO: It seems like Double is being triggered when Int should be.
         case PropertyTypeDouble:
             scalaType = kScalaDouble;
             break;
