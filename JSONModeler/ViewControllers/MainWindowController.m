@@ -49,6 +49,7 @@
 - (void)generateFiles;
 - (void)getDataButtonPressed;
 - (void)closeAlertBox;
+- (BOOL)doesDuplicateExist:(NSArray *)outputObjects atPath:(NSString *)filePath withExtension:(NSString *)extension;
 
 @end
 
@@ -489,33 +490,18 @@
     }
     
     // Check to see if we're going to overwrite files
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSString *filePath = url.path;
     
     BOOL willOverwriteFiles = NO;
     NSArray *outputObjects = (self.modeler).parsedDictionary.allValues;
     
-    
     if (language == OutputLanguageObjectiveC) {
-        for (ClassBaseObject *outputObject in outputObjects) {
-            if ( [fileManager fileExistsAtPath:[[filePath stringByAppendingPathComponent:outputObject.className] stringByAppendingPathExtension:@"m"]]
-                || [fileManager fileExistsAtPath:[[filePath stringByAppendingPathComponent:outputObject.className] stringByAppendingPathExtension:@"h"]] ) {
-                willOverwriteFiles = YES;
-            }
-        }
+        willOverwriteFiles = willOverwriteFiles || [self doesDuplicateExist:outputObjects atPath:filePath withExtension:@"m"];
+        willOverwriteFiles = willOverwriteFiles || [self doesDuplicateExist:outputObjects atPath:filePath withExtension:@"h"];
     } else if (language == OutputLanguageJava) {
-        for (ClassBaseObject *outputObject in outputObjects) {
-            if ( [fileManager fileExistsAtPath:[[filePath stringByAppendingPathComponent:outputObject.className] stringByAppendingPathExtension:@"java"]] ) {
-                willOverwriteFiles = YES;
-            }
-        }
-    } else if (language == OutputLanguageScala) { 
-        // TODO: Refactor this code to be a bit more dry (share code with Java).
-        for (ClassBaseObject *outputObject in outputObjects) {
-            if ( [fileManager fileExistsAtPath:[[filePath stringByAppendingPathComponent:outputObject.className] stringByAppendingPathExtension:@"scala"]] ) {
-                willOverwriteFiles = YES;
-            }
-        }
+        willOverwriteFiles = willOverwriteFiles || [self doesDuplicateExist:outputObjects atPath:filePath withExtension:@"java"];
+    } else if (language == OutputLanguageScala) {
+        willOverwriteFiles = willOverwriteFiles || [self doesDuplicateExist:outputObjects atPath:filePath withExtension:@"scala"];
     }
     
     if (willOverwriteFiles) {
@@ -530,6 +516,17 @@
     }
     
     return YES;
+}
+
+- (BOOL)doesDuplicateExist:(NSArray *)outputObjects atPath:(NSString *)filePath withExtension:(NSString *)extension {
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    for (ClassBaseObject *outputObject in outputObjects) {
+        NSString *fullPath = [[filePath stringByAppendingPathComponent:outputObject.className] stringByAppendingPathExtension:extension];
+        if ([fileManager fileExistsAtPath:fullPath]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - Custom Delegate method
