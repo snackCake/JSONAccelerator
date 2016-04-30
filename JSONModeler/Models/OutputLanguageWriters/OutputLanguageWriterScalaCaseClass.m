@@ -19,6 +19,7 @@ static NSString *const kScalaString = @"String";
 static NSString *const kScalaBool = @"Boolean";
 static NSString *const kScalaInt = @"Int";
 static NSString *const kScalaDouble = @"Double";
+static NSString *const kScalaAny = @"Any";
 
 @interface OutputLanguageWriterScalaCaseClass ()
 
@@ -96,7 +97,7 @@ static NSString *const kScalaDouble = @"Double";
             scalaType = property.referenceClass.className;
             break;
         case PropertyTypeOther:
-            scalaType = property.otherType;
+            scalaType = property.otherType == nil ? kScalaAny : property.otherType;
             break;
         default:
             NSLog(@"Warning: scalaTypeForType got invalid type: %d", property.type);
