@@ -15,6 +15,11 @@
 #import "OutputLanguageWriterScalaCaseClass.h"
 #import "ClassBaseObject.h"
 
+static NSString *const kScalaString = @"String";
+static NSString *const kScalaBool = @"Boolean";
+static NSString *const kScalaInt = @"Int";
+static NSString *const kScalaDouble = @"Double";
+
 @interface OutputLanguageWriterScalaCaseClass ()
 
 - (NSString *)scalaTypeForProperty:(ClassPropertiesObject *)property;
@@ -53,18 +58,17 @@
                 case PropertyTypeClass:
                     collectionType = property.collectionTypeString;
                     break;
-                    // TODO: All this duplication is kind of gross and it would be nice to refactor it.
                 case PropertyTypeString:
-                    collectionType = @"String";
+                    collectionType = kScalaString;
                     break;
                 case PropertyTypeInt:
-                    collectionType = @"Int";
+                    collectionType = kScalaInt;
                     break;
                 case PropertyTypeBool:
-                    collectionType = @"Boolean";
+                    collectionType = kScalaBool;
                     break;
                 case PropertyTypeDouble:
-                    collectionType = @"Double";
+                    collectionType = kScalaDouble;
                     break;
                 default:
                     NSLog(@"Warning: scalaTypeForType got invalid collection type: %d for property: %@",
@@ -77,17 +81,17 @@
         case PropertyTypeDictionary:
             break;
         case PropertyTypeString:
-            scalaType = @"String";
+            scalaType = kScalaString;
             break;
         case PropertyTypeInt:
-            scalaType = @"Int";
+            scalaType = kScalaInt;
             break;
         case PropertyTypeBool:
-            scalaType = @"Boolean";
+            scalaType = kScalaBool;
             break;
             // TODO: It seems like Double is being triggered when Int should be.
         case PropertyTypeDouble:
-            scalaType = @"Double";
+            scalaType = kScalaDouble;
             break;
         case PropertyTypeClass:
             scalaType = property.referenceClass.className;
