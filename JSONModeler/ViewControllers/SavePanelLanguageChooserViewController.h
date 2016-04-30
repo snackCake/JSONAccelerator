@@ -18,6 +18,7 @@
 @interface SavePanelLanguageChooserViewController : NSViewController
 
 @property (nonatomic) NSInteger languageDropDownIndex;
+@property (nonatomic) NSInteger jsonLibraryDropDownIndex;
 @property (strong) NSString *packageName;
 @property (strong) NSString *baseClassName;
 @property (strong) NSString *classPrefix;
@@ -31,6 +32,7 @@
 @property (weak) IBOutlet NSTextField *baseClassField;
 @property (weak) IBOutlet NSButton *buildForArcButton;
 @property (weak) IBOutlet NSView *javaPanel;
+@property (weak) IBOutlet NSView *jsonLibraryPanel;
 @property (weak) IBOutlet NSView *objectiveCPanel;
 @property (weak) IBOutlet NSTextField *classPrefixField;
 @property (weak) IBOutlet NSTextField *classPrefixLabel;
@@ -39,5 +41,6 @@
 - (IBAction)languagePopUpChanged:(id)sender;
 
 @property (NS_NONATOMIC_IOSONLY, readonly) OutputLanguage chosenLanguage;
+@property (NS_NONATOMIC_IOSONLY, readonly) JsonLibrary chosenJsonLibrary;
 
 @end

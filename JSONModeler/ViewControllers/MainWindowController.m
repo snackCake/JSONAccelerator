@@ -381,13 +381,10 @@
                 NSDictionary *optionsDict = nil;
                 
                 NSString *baseClassName = (self.languageChooserViewController).baseClassName;
-                                
+                JsonLibrary jsonLibrary = (self.languageChooserViewController).chosenJsonLibrary;
                 
-                                
                 if (language == OutputLanguageObjectiveC) {
                     NSString *classPrefix = (self.languageChooserViewController).classPrefix;
-                    
-                    
                     
                     if (!classPrefix) {
                         classPrefix = @"";
@@ -411,8 +408,10 @@
                 } else if (language == OutputLanguageScala) {
                     writer = [[OutputLanguageWriterScalaCaseClass alloc] init];
                     optionsDict = baseClassName != nil ? @{kJvmWritingOptionBaseClassName: baseClassName,
-                                                           kJvmWritingOptionPackageName: self.languageChooserViewController.packageName} :
-                                                         @{kJvmWritingOptionPackageName: self.languageChooserViewController.packageName};
+                                                           kJvmWritingOptionPackageName: self.languageChooserViewController.packageName,
+                                                           kWritingOptionJsonLibrary: [NSNumber numberWithUnsignedInteger:jsonLibrary]} :
+                                                         @{kJvmWritingOptionPackageName: self.languageChooserViewController.packageName,
+                                                           kWritingOptionJsonLibrary: [NSNumber numberWithUnsignedInteger:jsonLibrary]};
                 } else if (language == OutputLanguageCoreDataObjectiveC) {
                     writer = [[OutputLanguageWriterCoreData alloc] init];
                     

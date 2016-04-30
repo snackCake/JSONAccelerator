@@ -74,6 +74,7 @@
 		7E7110951CCD0A82006EF1CD /* DefaultJvmOutputLanguageWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7110941CCD0A82006EF1CD /* DefaultJvmOutputLanguageWriter.m */; };
 		7E7110961CCEF551006EF1CD /* DefaultJvmOutputLanguageWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7110941CCD0A82006EF1CD /* DefaultJvmOutputLanguageWriter.m */; };
 		7E7110971CCEF55C006EF1CD /* DefaultOutputLanguageWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7110911CCC4C40006EF1CD /* DefaultOutputLanguageWriter.m */; };
+		7EE613911CD189E3003BBDC8 /* ScalaCompanionObjectTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7EE613901CD189E3003BBDC8 /* ScalaCompanionObjectTemplate.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -236,6 +237,7 @@
 		7E7110911CCC4C40006EF1CD /* DefaultOutputLanguageWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultOutputLanguageWriter.m; path = Models/OutputLanguageWriters/DefaultOutputLanguageWriter.m; sourceTree = "<group>"; };
 		7E7110931CCD0A82006EF1CD /* DefaultJvmOutputLanguageWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultJvmOutputLanguageWriter.h; path = Models/OutputLanguageWriters/DefaultJvmOutputLanguageWriter.h; sourceTree = "<group>"; };
 		7E7110941CCD0A82006EF1CD /* DefaultJvmOutputLanguageWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultJvmOutputLanguageWriter.m; path = Models/OutputLanguageWriters/DefaultJvmOutputLanguageWriter.m; sourceTree = "<group>"; };
+		7EE613901CD189E3003BBDC8 /* ScalaCompanionObjectTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ScalaCompanionObjectTemplate.txt; path = Resources/Templates/ScalaCompanionObjectTemplate.txt; sourceTree = "<group>"; };
 		CC6FAA4DD08944659C3B3970 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -506,6 +508,7 @@
 				445F441E15328B7C00E501F6 /* DictionaryRepresentationArrayTemplate.txt */,
 				448B108F1487EAF800BEE605 /* ArraySetterTemplate.txt */,
 				7E3B2BF51CC887C600D3D03A /* ScalaCaseClassTemplate.txt */,
+				7EE613901CD189E3003BBDC8 /* ScalaCompanionObjectTemplate.txt */,
 			);
 			name = Templates;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				7D9FE00B14D32CD800F135CC /* JavaArrayTemplate.txt in Resources */,
 				7D9FE01214D3369B00F135CC /* JavaPrimitiveArrayTemplate.txt in Resources */,
 				440BCC411CC138AC00F6B37D /* Images.xcassets in Resources */,
+				7EE613911CD189E3003BBDC8 /* ScalaCompanionObjectTemplate.txt in Resources */,
 				445F442015328B7C00E501F6 /* DictionaryRepresentationArrayTemplate.txt in Resources */,
 				4490E8A0169241D9007B4FBC /* DataModelsTemplate.txt in Resources */,
 			);

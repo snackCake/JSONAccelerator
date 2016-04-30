@@ -22,6 +22,12 @@ typedef NS_ENUM(unsigned int, OutputLanguage) {
     OutputLanguageScala,
 };
 
+typedef NS_ENUM(unsigned int, JsonLibrary) {
+    JsonLibraryNone = 0,
+    JsonLibraryScalaPlay,
+    JsonLibraryScalaAkkaHttpSpray
+};
+
 typedef NS_ENUM(unsigned int, HTTPMethod) {
     HTTPMethodGet = 0,
     HTTPMethodPost = 1,

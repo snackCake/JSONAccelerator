@@ -19,6 +19,12 @@
 
 - (NSString *)scalaTypeForProperty:(ClassPropertiesObject *)property;
 
+- (void)updateImportsForTemplate:(NSMutableString *)templateString jsonLibrary:(JsonLibrary)jsonLibrary;
+- (void)updateCompanionObjectForTemplate:(NSMutableString *)templateString
+                             jsonLibrary:(JsonLibrary)jsonLibrary
+                             classObject:(ClassBaseObject *)classObject;
+- (void)updateFieldsForTemplate: (NSMutableString *)templateString class:(ClassBaseObject *)classObject;
+
 @end
 
 @implementation OutputLanguageWriterScalaCaseClass
@@ -80,7 +86,7 @@
         case PropertyTypeBool:
             scalaType = @"Boolean";
             break;
-        // TODO: It seems like Double is being triggered when Int should be.
+            // TODO: It seems like Double is being triggered when Int should be.
         case PropertyTypeDouble:
             scalaType = @"Double";
             break;
@@ -102,16 +108,17 @@
 /**
  * @return Scala case class source code.
  */
-- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject package:(NSString *)packageName {
+- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject
+                                             package:(NSString *)packageName
+                                             options:(NSDictionary *)options {
     NSBundle *mainBundle = [NSBundle mainBundle];
-    
     NSError *error = nil;
-    NSString *interfaceTemplate = [mainBundle pathForResource:@"ScalaCaseClassTemplate" ofType:@"txt"];
-    NSMutableString *templateString = [[NSMutableString alloc] initWithContentsOfFile:interfaceTemplate
+    NSString *interfaceTemplatePath = [mainBundle pathForResource:@"ScalaCaseClassTemplate" ofType:@"txt"];
+    NSMutableString *templateString = [[NSMutableString alloc] initWithContentsOfFile:interfaceTemplatePath
                                                                              encoding:NSUTF8StringEncoding
                                                                                 error:&error];
     if (error) {
-        NSLog(@"Failed to load ScalaPlayCaseClassTemplate.txt. This may imply the application is corrupted. Error: %@", error);
+        NSLog(@"Failed to load ScalaCaseClassTemplate.txt. This may imply the application is corrupted. Error: %@", error);
         return @"";
     }
     
@@ -124,14 +131,38 @@
                                     withString:classObject.className
                                        options:0
                                          range:NSMakeRange(0, templateString.length)];
+
+    JsonLibrary jsonLibrary = (JsonLibrary)((NSNumber *)options[kWritingOptionJsonLibrary]).unsignedIntegerValue;
+
+    [self updateImportsForTemplate:templateString jsonLibrary:jsonLibrary];
+    [self updateCompanionObjectForTemplate:templateString jsonLibrary:jsonLibrary classObject:classObject];
+    [self updateFieldsForTemplate:templateString class:classObject];
     
-    // TODO: Add options to make this know what to import, based on use of Play or some other JSON library.
-    NSString *importBlock = @"";
+    return [NSString stringWithString:templateString];
+}
+
+- (void)updateImportsForTemplate:(NSMutableString *)templateString jsonLibrary:(JsonLibrary)jsonLibrary {
+    NSString *importBlock = nil;
+    
+    switch (jsonLibrary) {
+        case JsonLibraryScalaPlay:
+            importBlock = @"\nimport play.api.libs.json._\n";
+            break;
+        case JsonLibraryScalaAkkaHttpSpray:
+            importBlock = @"\nimport akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport\nimport spray.json.DefaultJsonProtocol\n";
+            break;
+        default:
+            importBlock = @"";
+            break;
+    }
+    
     [templateString replaceOccurrencesOfString:@"{IMPORTBLOCK}"
                                     withString:importBlock
                                        options:0
                                          range:NSMakeRange(0, templateString.length)];
-    
+}
+
+- (void)updateFieldsForTemplate:(NSMutableString *)templateString class:(ClassBaseObject *)classObject {
     NSMutableString *fieldsString = [NSMutableString string];
     
     for (ClassPropertiesObject *property in (classObject.properties).allValues) {
@@ -145,8 +176,65 @@
                                     withString:fieldsString
                                        options:0
                                          range:NSMakeRange(0, templateString.length)];
+}
+
+- (void)updateCompanionObjectForTemplate:(NSMutableString *)templateString
+                             jsonLibrary:(JsonLibrary)jsonLibrary
+                             classObject:(ClassBaseObject *)classObject
+{
+    NSString *companionObjectTemplatePath = [[NSBundle mainBundle] pathForResource:@"ScalaCompanionObjectTemplate" ofType:@"txt"];
+    NSString *formatFunction = nil;
+    NSMutableString *companionObjectString = nil;
+    NSError *error = nil;
+    NSString *extends = nil;
     
-    return [NSString stringWithString:templateString];
+    switch (jsonLibrary) {
+        case JsonLibraryScalaPlay:
+            formatFunction = [NSString stringWithFormat:@"Json.format[%@]", classObject.className];
+            companionObjectString = [[NSMutableString alloc] initWithContentsOfFile:companionObjectTemplatePath
+                                                                           encoding:NSUTF8StringEncoding
+                                                                              error:&error];
+            extends = @"";
+            break;
+        case JsonLibraryScalaAkkaHttpSpray:
+            formatFunction = [NSString stringWithFormat:@"jsonFormat%lu(%@.apply)", classObject.properties.count, classObject.className];
+            companionObjectString = [[NSMutableString alloc] initWithContentsOfFile:companionObjectTemplatePath
+                                                                           encoding:NSUTF8StringEncoding
+                                                                              error:&error];
+            extends = @"extends SprayJsonSupport with DefaultJsonProtocol ";
+            break;
+        default:
+            companionObjectString = [NSMutableString string];
+            formatFunction = @"";
+            extends = @"";
+            break;
+    }
+    if (error) {
+        NSLog(@"Failed to load ScalaCompanionObjectTemplate.txt. This may imply the application is corrupted. Error: %@", error);
+        return;
+    }
+    
+    if (companionObjectString) {
+        [companionObjectString replaceOccurrencesOfString:@"{FORMATFUNCTION}"
+                                               withString:formatFunction
+                                                  options:0
+                                                    range:NSMakeRange(0, companionObjectString.length)];
+        
+        [companionObjectString replaceOccurrencesOfString:@"{CLASSNAME}"
+                                               withString:classObject.className
+                                                  options:0
+                                                    range:NSMakeRange(0, companionObjectString.length)];
+        
+        [companionObjectString replaceOccurrencesOfString:@"{OBJECTEXTENDS}"
+                                               withString:extends
+                                                  options:0
+                                                    range:NSMakeRange(0, companionObjectString.length)];
+
+        [templateString replaceOccurrencesOfString:@"{COMPANIONOBJECT}"
+                                        withString:companionObjectString
+                                           options:0
+                                             range:NSMakeRange(0, templateString.length)];
+    }
 }
 
 /**

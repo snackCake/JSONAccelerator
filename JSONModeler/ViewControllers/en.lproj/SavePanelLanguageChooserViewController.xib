@@ -14,6 +14,7 @@
                 <outlet property="classPrefixField" destination="438" id="546"/>
                 <outlet property="classPrefixLabel" destination="439" id="543"/>
                 <outlet property="javaPanel" destination="497" id="540"/>
+                <outlet property="jsonLibraryPanel" destination="0iB-rJ-ake" id="edN-1Q-lbc"/>
                 <outlet property="languageDropDown" destination="3" id="30"/>
                 <outlet property="objectiveCPanel" destination="511" id="541"/>
                 <outlet property="outputLanguageLabel" destination="9" id="71"/>
@@ -33,14 +34,14 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="186" id="571"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Scala" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="s6s-50-mpT" id="4">
+                    <popUpButtonCell key="cell" type="push" title="Scala" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="s6s-50-mpT" id="4">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="5">
                             <items>
                                 <menuItem title="Objective-C" id="6"/>
                                 <menuItem title="Java" id="7"/>
-                                <menuItem title="Core Data (Objective-C)" state="on" id="414">
+                                <menuItem title="Core Data (Objective-C)" id="414">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                 </menuItem>
                                 <menuItem title="Django (Python)" id="413">
@@ -49,7 +50,7 @@
                                 <menuItem title="Python" id="415">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                 </menuItem>
-                                <menuItem title="Scala" state="on" id="s6s-50-mpT"/>
+                                <menuItem title="Scala" id="s6s-50-mpT"/>
                             </items>
                         </menu>
                         <connections>
@@ -189,6 +190,48 @@
                         <constraint firstItem="438" firstAttribute="leading" secondItem="511" secondAttribute="leading" constant="171" id="584"/>
                         <constraint firstItem="438" firstAttribute="top" secondItem="511" secondAttribute="top" constant="19" id="586"/>
                         <constraint firstItem="438" firstAttribute="centerY" secondItem="439" secondAttribute="centerY" id="587"/>
+                    </constraints>
+                </customView>
+                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0iB-rJ-ake" userLabel="JSON Library Panel">
+                    <rect key="frame" x="0.0" y="-13" width="548" height="62"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWq-r4-MFb">
+                            <rect key="frame" x="-2" y="23" width="167" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="163" id="t4w-uu-ef0"/>
+                            </constraints>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="JSON Library" placeholderString="" id="Tyz-OK-RmW">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6tk-K1-dXS">
+                            <rect key="frame" x="169" y="18" width="191" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="186" id="oBU-z9-vJQ"/>
+                            </constraints>
+                            <popUpButtonCell key="cell" type="push" title="Akka-HTTP / Spray" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="SY5-Nf-g2S" id="4di-CQ-pT1">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" title="OtherViews" id="1xv-hf-ORL">
+                                    <items>
+                                        <menuItem title="None" id="v2V-UY-J6d">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Play" tag="1" id="bhL-e3-LYs"/>
+                                        <menuItem title="Akka-HTTP / Spray" state="on" id="SY5-Nf-g2S"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                            <connections>
+                                <binding destination="-2" name="selectedIndex" keyPath="self.jsonLibraryDropDownIndex" id="kZ6-fx-pu3"/>
+                            </connections>
+                        </popUpButton>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="EWq-r4-MFb" firstAttribute="leading" secondItem="0iB-rJ-ake" secondAttribute="leading" constant="2" id="mxM-9J-hUU"/>
+                        <constraint firstItem="EWq-r4-MFb" firstAttribute="top" secondItem="0iB-rJ-ake" secondAttribute="top" constant="21" id="v3s-QH-aZG"/>
                     </constraints>
                 </customView>
             </subviews>

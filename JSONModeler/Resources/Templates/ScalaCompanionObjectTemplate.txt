@@ -1,0 +1,4 @@
+
+object {CLASSNAME} {OBJECTEXTENDS}{
+  implicit val format = {FORMATFUNCTION}
+}

@@ -46,14 +46,16 @@
 - (NSDictionary *)getOutputFilesForClassObject:(ClassBaseObject *)classObject {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    NSString *sourceString = [self sourceImplementationFileForClassObject:classObject package:kDefaultJvmPackageName];
+    NSString *sourceString = [self sourceImplementationFileForClassObject:classObject package:kDefaultJvmPackageName options: nil];
     dict[[NSString stringWithFormat:self.filenameFormat, classObject.className]] = sourceString;
     
     return [NSDictionary dictionaryWithDictionary:dict];
     
 }
 
-- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject package:(NSString *)packageName {
+- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject
+                                             package:(NSString *)packageName
+                                             options:(NSDictionary *)options {
 #ifndef COMMAND_LINE
     NSBundle *mainBundle = [NSBundle mainBundle];
     

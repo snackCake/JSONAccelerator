@@ -28,6 +28,8 @@ static NSString *const kDefaultJvmPackageName = @"com.MYCOMPANY.MYPROJECT.model"
 - (NSString *)findPackageForOptions:(NSDictionary *)options;
 - (void)ensureUniqueClassNameForClass:(ClassBaseObject*)base files:(NSArray *)files options:(NSDictionary *)options;
 - (void)writeSource:(NSString *)source toURL:(NSURL *)url filename:(NSString *)filename error:(NSError **)error;
-- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject package:(NSString *)packageName;
+- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject
+                                             package:(NSString *)packageName
+                                             options:(NSDictionary *)options;
 
 @end

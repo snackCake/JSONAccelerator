@@ -18,7 +18,9 @@
 
 @implementation DefaultJvmOutputLanguageWriter
 
-- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject package:(NSString *)packageName {
+- (NSString *)sourceImplementationFileForClassObject:(ClassBaseObject *)classObject
+                                             package:(NSString *)packageName
+                                             options:(NSDictionary *) options {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
@@ -46,7 +48,7 @@
         
         /* Write the source file to disk */
         NSError *error;
-        NSString *outputString = [self sourceImplementationFileForClassObject:base package:packageName];
+        NSString *outputString = [self sourceImplementationFileForClassObject:base package:packageName options:options];
 
         NSString *filename = [NSString stringWithFormat:self.filenameFormat, base.className];
         [self writeSource:outputString toURL:url filename:filename error:&error];

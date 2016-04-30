@@ -15,6 +15,8 @@
 #import <Foundation/Foundation.h>
 #import "OutputLanguageWriterProtocol.h"
 
+static NSString *const kWritingOptionJsonLibrary = @"kWritingOptionJsonLibrary";
+
 @interface DefaultOutputLanguageWriter : NSObject <OutputLanguageWriterProtocol>
 
 @end

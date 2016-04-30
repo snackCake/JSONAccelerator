@@ -1,10 +1,4 @@
 package {PACKAGENAME}
-
-import play.api.libs.json._
 {IMPORTBLOCK}
-
 case class {CLASSNAME}({FIELDS})
-
-object {CLASSNAME} {
-  implicit val format = Json.format[{CLASSNAME}]
-}
+{COMPANIONOBJECT}
